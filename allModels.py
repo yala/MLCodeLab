@@ -61,9 +61,6 @@ if __name__ == "__main__":
     testTweets = [t[0] for t in testSet]
     testY = [t[1] for t in testSet]
     
-    
-    countVec = CountVectorizer(max_features=100)
-    countVec.fit(trainTweets)
     dictVec  = DictVectorizer()
 
 
