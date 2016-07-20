@@ -39,12 +39,12 @@ if __name__ == "__main__":
     testSet =  p.load(open(testSetPath, 'rb'))
 
 
-    perceptron = Perceptron(n_iter=15, random_state=0)
-    passAgg    = PassiveAggressiveClassifier(n_iter=15, random_state=0)
+    perceptron = Perceptron(n_iter=15)
+    passAgg    = PassiveAggressiveClassifier(n_iter=350)
 
     #Note SVM's time complexity grows quadratically as the size of the training set increases
     #SVM cannot easily scale past 10,000 samples (source sklearn), so for the SVM, we'll be feading in a truncated train set of 10,000.
-    svm        = SVC(random_state=0)
+    svm        = SVC()
 
 
     #Extract tweets and labels into 2 lists
@@ -76,19 +76,46 @@ if __name__ == "__main__":
 
 
     trainX = getFeatures(trainTweets, countVecNGram, dictVec, True)
+    trainXSmall = getFeatures(trainTweetsSmall, countVecNGram, dictVec)
+
 
     devX = getFeatures(devTweets, countVecNGram, dictVec)
     testX = getFeatures(testTweets, countVecNGram, dictVec)
 
-    perceptron.fit(trainX, trainY)
-    print "Perceptron Dev:", perceptron.score(devX, devY)
+    percScoresTrain = []
+    percScoresDev = []
+    for i in range(10):
+        perceptron.fit(trainX, trainY)
+        percScoresDev.append(perceptron.score(devX, devY))
+        percScoresTrain.append(perceptron.score(trainX, trainY))
+
+    print "Perceptron Train:", np.mean(percScoresTrain)
+    print "Perceptron Dev:", np.mean(percScoresDev)
     
-    passAgg.fit(trainX, trainY)
-    print "Passive Aggressive Dev:", passAgg.score(devX, devY)
+    passAggScoresTrain = []
+    passAggScoresDev = []
+    for i in range(10):
+        passAgg.fit(trainX, trainY) 
+        passAggScoresDev.append( passAgg.score(devX, devY))
+        passAggScoresTrain.append( passAgg.score(trainX, trainY))
 
 
-    trainXSmall = getFeatures(trainTweetsSmall, countVecNGram, dictVec)
+    print "Passive Aggressive Train:", np.mean(passAggScoresTrain)
+    print "Passive Aggressive Dev:", np.mean(passAggScoresDev)
+
+    
+    passAggScoresSmallTrain = []
+    passAggScoresSmallDev = []
+    for i in range(10):
+        passAgg.fit(trainX, trainY) 
+        passAggScoresSmallDev.append( passAgg.score(devX, devY))
+        passAggScoresSmallTrain.append( passAgg.score(trainXSmall,trainYSmall))
+
+    print "Passive Aggressive (Small Dataset)) Train:", np.mean(passAggScoresSmallTrain)
+    print "Passive Aggressive (Small Dataset)) Dev:", np.mean(passAggScoresSmallDev)
+
     svm.fit(trainXSmall, trainYSmall)
+    print "SVM Train (Small Dataset):", svm.score(trainXSmall, trainYSmall)
     print "SVM Dev:", svm.score(devX, devY)
    
 
