@@ -150,33 +150,3 @@ if __name__ == "__main__":
     plot(train_sizes4, train_scores4, test_scores4, "Large Vocab and nGrams "+str(ngramRange))
     print
 
-
-    # ITERATION 5 - Overfit
-    # Let's try including increasing our ngrams
-    print "Iteration 5"
-    ngramRange = (1, 10)
-    countVecNGram = CountVectorizer(max_features=maxVocabSize, ngram_range=ngramRange )
-    countVecNGram.fit(trainTweets)
-    if printVocab:
-        print "Large vocab after filitering out stop_words"
-        print countVecNGram.get_feature_names()
-
-    trainXNGram = getFeatures(trainTweets, countVecNGram, dictVec)
-
-    train_sizes5, train_scores5, test_scores5 = learning_curve(perceptron, trainXNGram, trainY, train_sizes=sizes, cv=10)
-
-    print "Large Vocab+nGrams",ngramRange,"- Dev set accuracy:",  np.mean(test_scores5[-1])
-    plot(train_sizes5, train_scores5, test_scores5, "Large Vocab and nGrams "+str(ngramRange))
-    print
-    
-    # ITERATION 6 - Regularization, fight the overfit
-    # Let's try adding some regularization (since our feature norms are very large) 
-    print "Iteration 6"
-    perceptronReg = Perceptron(penalty="l1", n_iter=15)
-    train_sizes6, train_scores6, test_scores6 = learning_curve(perceptronReg, trainXNGram, trainY, train_sizes=sizes, cv=10)
-
-    print "Large Vocab+nGrams",ngramRange," with L1 Reg- Dev set accuracy:", np.mean(test_scores6[-1])
-    
-    plot(train_sizes6, train_scores6, test_scores6, "Regularization")
-    print
-
