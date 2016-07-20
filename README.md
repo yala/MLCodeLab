@@ -4,26 +4,28 @@ Welcome to MLCodeLab! Today we'll be building a sentiment analysis classifier fo
 
 In this lab we cover:
 
-- Building a classifier End to End (from text to features to results)
+- Building a classifier end to end (from raw text to features to results!)
 - Analysis tools and feature engineering
 - Experimenting with different classifiers
 
 In the talk, I'll walk through the solution code, but working through implementing the code skeletons is heavily encouraged! That's where the real learning comes in. Let's get started!
 
 # Section 1: Building it End to End  
-In this section, you'll find the following python files. We'll be building a featureExtractor, mapping tweets to a discrete sized array (a bag of words model), training a Perceptron and evaluating our results.
+In this section, we'll be building a featureExtractor, mapping tweets to a discrete sized array (a bag of words model), training a Perceptron and evaluating our results. The relevant python files are listed bellow.
 
 - featureExtract.py
 - model.py
 - evaluate.py
 
 # Section 2: Analysis and Feature Engineering
-In this section, we'll talk about a simple example of [underfitting and overfitting](http://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html). First we'll talk about learning curves, and how to get and intuition of what your learning algorithm is doing and how we can address each of those problems with our features. 
+In this section, we'll talk about a simple example of [underfitting and overfitting](http://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html). First we'll talk about learning curves, and how to get and intuition of what your learning algorithm is doing and how we can address each of those problems with our features. As before, the relevant file is listed below.
 
 - featureEngineering.py
 
 # Section 3: Exploring more classifiers
-Scikit-learn makes it really easy to experiment with different types of classifiers. In this section, we'll show how we can switch from the previous implemention of *model.py* with Perceptron to a Passive Agressive Classifier, or an SVM.
+Scikit-learn makes it really easy to experiment with different types of classifiers. In this section, we'll show how we can switch from the previous implemention of *model.py* with Perceptron to a Passive Agressive Classifier, or an SVM. The relevant file is called:
+
+- allModels.py
 
 
 # Additional information:
