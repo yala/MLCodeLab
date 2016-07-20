@@ -11,11 +11,10 @@ In this lab we cover:
 In the talk, I'll walk through the solution code, but working through implementing the code skeletons is heavily encouraged! That's where the real learning comes in. Let's get started!
 
 # 1: Building it End to End  
-In this section, we'll be building a featureExtractor, mapping tweets to a discrete sized array (a bag of words model), training a Perceptron and evaluating our results. The relevant python files are listed bellow.
+In this section, we'll be building a featureExtractor, mapping tweets to a discrete sized array (a bag of words model), training a Perceptron and evaluating our results. The relevant python file is listed bellow.
 
-- [featureExtract.py](featureExtract.py)
 - [model.py](model.py)
-- [evaluate.py](evaluate.py)
+
 
 # 2: Analysis and Feature Engineering
 In this section, we'll talk about a simple example of [underfitting and overfitting](http://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html). First we'll talk about learning curves, and how to get and intuition of what your learning algorithm is doing and how we can address each of those problems with our features. As before, the relevant file is listed below.
