@@ -67,9 +67,9 @@ if __name__ == "__main__":
     print "Train label distribution", getLabelDist(trainY)
 
     # To reperest a tweet, we'll start with the following features
-    # Bag of words for the 50 most common words (we'll use a CountVectorizer for this)
+    # Bag of words for the 100 most common words (we'll use a CountVectorizer for this)
     # Length of the tweet in characters        
-    countVec = CountVectorizer(max_features=1500)
+    countVec = CountVectorizer(max_features=100)
     dictVec  = DictVectorizer()
 
     # Step 1: Fit the CountVectorizer to the trainTweets
