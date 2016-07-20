@@ -8,7 +8,7 @@ In this lab we cover:
 - Analysis tools and feature engineering
 - Experimenting with different classifiers
 
-In the talk, I'll walk through the solution code, but working through implementing the code skeletons is heavily encouraged! That's where the real learning comes in. Let's get started!
+In the talk, I'll walk through the solution code, but working through implementing the code skeletons is heavily encouraged! It's not very tricky but generating the code yourself will solidify the knowledge. Let's get started!
 
 # 1: Building it End to End  
 In this section, we'll be building a featureExtractor, mapping tweets to a discrete sized array (a bag of words model), training a Perceptron and evaluating our results. The relevant python file is listed bellow.
