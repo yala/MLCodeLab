@@ -15,29 +15,30 @@ testSetPath  = "data/test.p"
 # If we are getting features for the trainSet, have the dictVectorizer learn
 # how to index additional features 
 def getFeatures(tweets, countVec, dictVec, isTrainSet=False, verbose = False):
-    bagOfWordsMatrix = #TODO Get back of words representation of tweets.
-
+    bagOfWordsMatrix = countVec.transform(tweets)
     if verbose:
         print "Shape of bag of word matrix", bagOfWordsMatrix.shape
-        print
+        raw_input()
 
     # Build list of feature dictionaries
-    additionalFeatures = #TODO build a list of feature dictionaries, to get the tweet length
+    additionalFeatures = []
+    for tweet in tweets:
+        additFeature = {'tweetLength':len(tweet)}
+        additionalFeatures.append(additFeature)
 
     if isTrainSet:
-        additionalFeatureMatrix = #TODO train dictVec on trainSet and get a feature matrix
+        additionalFeatureMatrix = dictVec.fit_transform(additionalFeatures)
     else:
-        additionalFeatureMatrix = #TODO get a feature matrix from dictVec
-
+        additionalFeatureMatrix = dictVec.transform(additionalFeatures)
     if verbose:
         print "Shape of additionalFeatureMatrix", additionalFeatureMatrix.shape
-        print
+        raw_input()
         # Print feature names
         print "Names of additional features", dictVec.get_feature_names()        
-        print
+        raw_input()
 
     # Horizontally stack matrices (column-wise) to build one large feature matrix
-    X = #TODO Combine the two feature matricies
+    X = hstack([bagOfWordsMatrix,additionalFeatureMatrix])    
 
     if verbose:
         print "Shape of feature matrix", X.shape
@@ -65,45 +66,40 @@ if __name__ == "__main__":
 
     print "Train label distribution", getLabelDist(trainY)
 
-    # To reperent a tweet, we'll start with the following features
+    # To reperest a tweet, we'll start with the following features
     # Bag of words for the 100 most common words (we'll use a CountVectorizer for this)
-    # Length of the tweet in characters 
+    # Length of the tweet in characters        
+    countVec = CountVectorizer(max_features=100)
+    dictVec  = DictVectorizer()
 
-    countVec =  #TODO initiliaze the count vectorizer
-    dictVec  =  #TODO initiliaze the dict vectorizer
-
-    # Fit the CountVectorizer to the trainTweets
-    # This method calculates the top words in the train set, and builds
-    # The 100 word voculary the countVectorizer will use in the future    
+    # Step 1: Fit the CountVectorizer to the trainTweets
     countVec.fit(trainTweets)
 
     print "Vocab of countVec"
-    print #TODO print vocab of countVec
+    print countVec.get_feature_names()
 
 
-    # Implement getFeautres() to return a feature matrix for any
+    # Step 2: Implement getFeautres() to return a feature matrix for any
     # list of tweets.
 
     #Now get train features.
     trainX = getFeatures(trainTweets, countVec, dictVec, True, True)
     
-    #Train the perceptron
-    
-    0 #TODO Train the perceptron
+    perceptron.fit(trainX, trainY)
 
     #Get features and labels for development set.
-    devSet =     #TODO open devSetPath and load it into devSet
-    devTweets =  #TODO get the tweets from devSet
+    devSet = p.load(open(devSetPath, 'rb'))
+    devTweets = [d[0] for d in devSet]
 
-    devX =  #TODO Get features for those tweets
-    devY =  #TODO Get the labels for the dev set
+    devX = getFeatures(devTweets, countVec, dictVec)
+    devY = [d[1] for d in devSet]
 
     print "Train label distribution", getLabelDist(devY)
 
-    # This is how you predict labels for devSet
-    predictedLabels = perceptron.predict(devX)
+    # Predict labels for devSet
+    perceptron.predict(devX)
 
     #Print out accuracy for trainSet
-    print "Train set accuracy:", #TODO get train set accuracy
+    print "Train set accuracy:", perceptron.score(trainX, trainY)
     #Print out accuracy for devSet
-    print "Dev set accuracy:", #TODO get dev set accuracy
+    print "Dev set accuracy:", perceptron.score(devX, devY)
