@@ -2,6 +2,8 @@
 
 Welcome to MLCodeLab! Today we'll be building a sentiment analysis classifier for twitter. Our task is determining if a tweet is positive or negative.
 
+So given a tweet like `This weather is awful #boston `, we want to build a classifier to correctly classify this tweet as negative.
+
 In this lab we cover:
 
 - Building a classifier end to end (from raw text to features to results!)
