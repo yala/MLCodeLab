@@ -58,7 +58,6 @@ if __name__ == "__main__":
 
     trainSet =  p.load(open(trainSetPath, 'rb'))
 
-    perceptron = Perceptron(verbose=1, n_iter=15)
 
     #Extract tweets and labels into 2 lists
     trainTweets = [t[0] for t in trainSet]
@@ -66,7 +65,7 @@ if __name__ == "__main__":
 
     print "Train label distribution", getLabelDist(trainY)
 
-    # To reperest a tweet, we'll start with the following features
+    # To represent a tweet, we'll start with the following features
     # Bag of words for the 100 most common words (we'll use a CountVectorizer for this)
     # Length of the tweet in characters        
     countVec = CountVectorizer(max_features=100)
@@ -79,12 +78,13 @@ if __name__ == "__main__":
     print countVec.get_feature_names()
 
 
-    # Step 2: Implement getFeautres() to return a feature matrix for any
+    # Step 2: Implement getFeatures() to return a feature matrix for any
     # list of tweets.
 
     #Now get train features.
     trainX = getFeatures(trainTweets, countVec, dictVec, True, True)
-    
+    #intialize and train the perceptron
+    perceptron = Perceptron(verbose=1, n_iter=15)
     perceptron.fit(trainX, trainY)
 
     #Get features and labels for development set.
@@ -98,7 +98,6 @@ if __name__ == "__main__":
 
     # Predict labels for devSet
     perceptron.predict(devX)
-
     #Print out accuracy for trainSet
     print "Train set accuracy:", perceptron.score(trainX, trainY)
     #Print out accuracy for devSet

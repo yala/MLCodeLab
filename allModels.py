@@ -39,10 +39,10 @@ if __name__ == "__main__":
     testSet =  p.load(open(testSetPath, 'rb'))
 
 
-    perceptron = Perceptron(n_iter=15)
-    passAgg    = PassiveAggressiveClassifier(n_iter=350)
+    perceptron = Perceptron(n_iter=250)
+    passAgg    = PassiveAggressiveClassifier(n_iter=550)
 
-    #Note SVM's time complexity grows quadratically as the size of the training set increases
+    #Note SVM's time complexity grows quadratically as the size of the training set increases. 
     #SVM cannot easily scale past 10,000 samples (source sklearn), so for the SVM, we'll be feading in a truncated train set of 10,000.
     svm        = SVC()
 
@@ -67,7 +67,7 @@ if __name__ == "__main__":
     # ITERATION 4 from previous section
 
     ngramRange = (1,3)
-    maxVocabSize = 1000
+    maxVocabSize = 500
     countVecNGram = CountVectorizer(max_features=maxVocabSize, ngram_range=ngramRange )
     countVecNGram.fit(trainTweets)
 
@@ -79,42 +79,28 @@ if __name__ == "__main__":
     devX = getFeatures(devTweets, countVecNGram, dictVec)
     testX = getFeatures(testTweets, countVecNGram, dictVec)
 
-    percScoresTrain = []
-    percScoresDev = []
-    for i in range(10):
-        perceptron.fit(trainX, trainY)
-        percScoresDev.append(perceptron.score(devX, devY))
-        percScoresTrain.append(perceptron.score(trainX, trainY))
-
-    print "Perceptron Train:", np.mean(percScoresTrain)
-    print "Perceptron Dev:", np.mean(percScoresDev)
     
-    passAggScoresTrain = []
-    passAggScoresDev = []
-    for i in range(10):
-        passAgg.fit(trainX, trainY) 
-        passAggScoresDev.append( passAgg.score(devX, devY))
-        passAggScoresTrain.append( passAgg.score(trainX, trainY))
+    perceptron.fit(trainX, trainY)
 
 
-    print "Passive Aggressive Train:", np.mean(passAggScoresTrain)
-    print "Passive Aggressive Dev:", np.mean(passAggScoresDev)
+    print "Perceptron Train:", perceptron.score(trainX, trainY)
+    print "Perceptron Dev:", perceptron.score(devX, devY)
+    print "--"
 
+    passAgg.fit(trainX, trainY) 
+
+
+    print "Passive Aggressive Train:", passAgg.score(trainX, trainY)
+    print "Passive Aggressive Dev:", passAgg.score(devX, devY)
+    print "--"
     
-    passAggScoresSmallTrain = []
-    passAggScoresSmallDev = []
-    for i in range(10):
-        passAgg.fit(trainX, trainY) 
-        passAggScoresSmallDev.append( passAgg.score(devX, devY))
-        passAggScoresSmallTrain.append( passAgg.score(trainXSmall,trainYSmall))
-
-    print "Passive Aggressive (Small Dataset)) Train:", np.mean(passAggScoresSmallTrain)
-    print "Passive Aggressive (Small Dataset)) Dev:", np.mean(passAggScoresSmallDev)
+    
 
     svm.fit(trainXSmall, trainYSmall)
     print "SVM Train (Small Dataset):", svm.score(trainXSmall, trainYSmall)
     print "SVM Dev:", svm.score(devX, devY)
-   
+
+    print "--"
 
     #Now we use the best scoring model on dev, to select our final model, which run on the heldout set, test.
     # In our case, it's our Perceptron model
