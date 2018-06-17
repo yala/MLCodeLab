@@ -5,14 +5,14 @@ Lab 1 can be found at `lab1`.
 
 First, we'll walk through `lab1/sentiment_analysis_tutorial.ipynb` together, and cover how to build and tune models on SKLearn. Next, you'll apply what you learned, and work through `lab1/news_group_exercise.ipynb` yourself.
 
-We provide a sample solution in `lab1/news_group_exercise.ipynb`.
+We provide a sample solution in `lab1/sample_news_group_solution.ipynb`.
 
 ## Lab 2: Intro to DNN Packages: PyTorch
 Lab 2 can be found at `lab2`.
 
 First, we'll walk through `lab2/mnist_tutorial.ipynb` together, and cover how to build and tune models on PyTorch. Next, you'll apply what you learned, and work through `lab1/cifar_exercise.ipynb` yourself.
 
-We provide a sample solution in `lab1/news_group_exercise.ipynb`.
+We provide a sample solution in `lab1/sample_cifar_solution.ipynb`.
 
 
 ## Running the labs
@@ -23,7 +23,7 @@ The labs are jupyter notebooks, so run `jupyter notebook` in this directory, and
 Please install `python3.6` and `pip` before coming to lab. If you have any problems please post on piazza.
 
 
-## Lab1 Install Instructions
+## Installation Instructions
 Please copy the following commands to your bash terminal:
 
 ```
@@ -39,9 +39,14 @@ pip install -r requirements.txt;
 Then visit the [PyTorch website](https://pytorch.org/), and follow their instalation instructions your OS and python 3.6.
 Instead of `pip3`, please use `pip`.
 
+To test your if your intallation worked,
+run:
+` python test_installation.py`
 
-Finally, run:
+Finally, to open up the lab notebook, run:
 ```jupyter notebook```
+
+
 
 ### If you don't have git
 - Just click "Clone or Download Button" and then click 'Download Zip' on this page: [https://github.com/yala/MLCodeLab](https://github.com/yala/MlCodeLab)
