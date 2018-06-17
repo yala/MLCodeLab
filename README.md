@@ -1,40 +1,37 @@
-# MLCodeLab
+# Intro to Machine Learning Labs
 
-Welcome to MLCodeLab! Today we'll be building a sentiment analysis classifier for twitter. Our task is determining if a tweet is positive or negative.
+## Lab 1: Intro to ML Packages: SKLearn
+Lab 1 can be found at `Lab1.ipynb`.
 
-So given a tweet like `This weather is awful #boston `, we want to build a classifier to correctly classify this tweet as negative.
-
-In this lab we cover:
-
-- Building a classifier end to end (from raw text to features to results!)
-- Analysis and feature engineering
-- Experimenting with different classifiers
-
-In the talk, I'll walk through some sample code, but working through implementing the code yourself is heavily encouraged! It's not very tricky but generating the code yourself will solidify the knowledge. Let's get started!
-
-# 1: Building it End to End  
-In this section, we'll be building feature extraction, mapping tweets to a discrete sized array (a bag of words model), training a Perceptron and evaluating our results. The relevant python file is listed bellow.
-
-- [model.py](model.py)
+## Lab 2: Intro to DNN Packages: PyTorch
+Lab 2 can be found at `Lab2.ipynb`.
 
 
-# 2: Analysis and Feature Engineering
-In this section, we'll look tune our model to optimize it's performance. We'll play with the number of training iterations, vocabulary size, the use of stop words and ngram representations. 
-
-- [featureEngineering.py](featureEngineering.py)
+## Running the labs
+The labs are jupyter notebooks, so run `jupyter notebook` in this directory, and then click on the proper file name in jupyter to open it.
 
 
-# 3: Exploring more classifiers
-Scikit-learn makes it really easy to experiment with different types of classifiers. In this section, we'll show how we can switch from the previous implemention of *model.py* with Perceptron to a Passive Agressive Classifier, or an SVM. The relevant python file is called:
+## Requirments:
+Please install `python3.6` and `pip` before coming to lab. If you have any problems please post on piazza.
 
-- [allModels.py](allModels.py)
 
-# Additional information:
-One thing we didn't walkthrough is how we build the *.p* files. For completeness, I've included the code for that [here](data/buildDataSet.py).
+## Install Instructions
+Please copy the following commands to your bash terminal:
 
-### Sources
-This twitter dataset for this code lab comes from [here](http://thinknook.com/twitter-sentiment-analysis-training-corpus-dataset-2012-09-22/)
 
-The full dataset with 1.5 million tweets can be downloaded [here](http://thinknook.com/wp-content/uploads/2012/09/Sentiment-Analysis-Dataset.zip)
+```
+git clone https://github.com/yala/MLCodeLab.git;
+cd MLCodeLab;
+pip install virtualenv;
+virtualenv intro_ml;
+source intro_ml/bin/activate;
+pip install --upgrade pip;
+pip install -r requirements.txt;
+jupyter notebook
+```
+From within jupyter, in the top-right corner, select the kernel named "intro_dl".
+This is the kernel that will have the contents of your virtualenv.
 
-More information about scikit-learn can be found at their [website](http://scikit-learn.org/)
+
+### If you don't have git
+- Just click "Clone or Download Button" and then click 'Download Zip' on this page: [https://github.com/yala/MLCodeLab](https://github.com/yala/MlCodeLab)
