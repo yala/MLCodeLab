@@ -10,7 +10,9 @@ We provide a sample solution in `lab1/sample_news_group_solution.ipynb`.
 ## Lab 2: Intro to DNN Packages: PyTorch
 Lab 2 can be found at `lab2`.
 
-First, we'll walk through `lab2/mnist_tutorial.ipynb` together, and cover how to build and tune models on PyTorch. Next, you'll apply what you learned, and work through `lab2/cifar_exercise.ipynb` yourself.
+First, we'll walk through `lab2/mnist_tutorial.ipynb` together, and cover how to build and tune models on PyTorch. Next, you'll apply what you learned, and work through `lab2/cifar_exercise.ipynb` yourself. 
+
+We provide a sample solution in `lab2/cifar_sample_solution.ipynb`.
 
 
 ## Running the labs
