@@ -20,5 +20,6 @@ The labs are Google Colaboratory notebooks, so just click the `View in Colaborat
 To save your progress, you can copy the notebooks to your own google drive.
 
 ## Requirements:
-Software: A modern web browser. This has been tested on Google Chrome, Firefox, Safari and Microsoft Edge. 
+Software: A modern web browser. This has been tested on Google Chrome, Firefox, and Safari.
+
 Accounts: A Google Account. If you don't have one, please make a free one, 
