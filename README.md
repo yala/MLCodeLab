@@ -18,5 +18,5 @@ The labs are Google Colaboratory notebooks, so just click the `View in Colaborat
 To save your progress, you can copy the notebooks to your own google drive.
 
 ## Requirements:
-Please have either Google Chrome or Firefox installed and a Google Account.
-You may need to add Colaboratory to your browser.
+Software: Either Google Chrome or Firefox installed
+Accounts: A Google Account. Colaboratory is linked with google drive. 
